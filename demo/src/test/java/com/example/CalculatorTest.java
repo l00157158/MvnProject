@@ -23,4 +23,10 @@ public class CalculatorTest {
         // This will fail because 2 + 2 is 4, not 5
         assertEquals("The sum should be 5", 5, sum);
     }
+    @Test
+    public void testSubstract(){
+        Calculator calculator = new Calculator();
+        int diff = calculator.substract(6,5);
+        assertEquals("Diff should be 1", 1, diff);
+          }
 }
