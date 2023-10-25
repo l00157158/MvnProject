@@ -38,6 +38,7 @@ jobs:
       
       # New job for sample test
   sample_test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Sample Test Step
