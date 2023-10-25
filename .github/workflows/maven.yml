@@ -29,6 +29,9 @@ jobs:
         cache: maven
     - name: Clean before build Maven
       run: mvn clean install
+    - name: Print Working Directory
+      run: pwd
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
