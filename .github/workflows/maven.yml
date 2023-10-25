@@ -34,10 +34,12 @@ jobs:
       run: pwd
     - name: List directory contents
       run: ls -R
+    - name: cleaning up and compiling
+      run: mvn clean
 
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file demo/pom.xml
 
         # Sample Test Step
     - name: Sample Test Step
