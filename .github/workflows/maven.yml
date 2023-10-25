@@ -58,6 +58,9 @@ jobs:
     needs: sample_test
     runs-on: ubuntu-latest
     steps:
+    - name: Install SSH Client
+      run: sudo apt-get install openssh-client -y
+
     - name: Copy Artifact to EC2
       run: |
         scp -o StrictHostKeyChecking=no demo/target/demo-1.0-SNAPSHOT.jar ubuntu@54.80.56.59:/home/ubuntu/mvnprj/
