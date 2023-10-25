@@ -27,10 +27,9 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    - name: Clean before build Maven
-      run: mvn clean install
-    - name: Change directory to demo
-      run: cd demo
+    - name: Setting up working directory
+      working-directory: demo
+
     - name: Print Working Directory
       run: pwd
     - name: List directory contents
