@@ -62,7 +62,8 @@ jobs:
       run: |
         echo "${{secrets.MVN_PRJ_KEY_PVT}}" > deploy_key.pem
         chmod 600 deploy_key.pem
-        scp -o StrictHostKeyChecking=no -i deploy_key.pem /home/runner/work/MvnProject/MvnProject/demo/target/demo-1.0-SNAPSHOT.jar ubuntu@54.89.10.92:/home/ubuntu/mvnprj/
+        echo "hello world" > javasample.jar
+        scp -o StrictHostKeyChecking=no -i deploy_key.pem javasample.jar ubuntu@54.89.10.92:/home/ubuntu/mvnprj/
       
     - name: Restart Application on EC2
       run: |
