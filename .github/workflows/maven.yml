@@ -60,10 +60,10 @@ jobs:
     steps:
     - name: Install SSH Client
       run: sudo apt-get install openssh-client -y
- #   - name: Setup SSH Agent
- #     run: |
- #       eval "$(ssh-agent -s)"
- #       echo "${{ secrets.GH_DEPLOY_KEY }}" | ssh-add -
+    - name: Setup SSH Agent
+      run: |
+        eval "$(ssh-agent -s)"
+        echo "${{ secrets.GH_DEPLOY_KEY }}" | ssh-add -
 
     - name: Copy Artifact to EC2
       run: |
