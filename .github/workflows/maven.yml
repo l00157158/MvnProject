@@ -63,7 +63,7 @@ jobs:
     - name: Setup SSH Agent
       run: |
         eval "$(ssh-agent -s)"
-        ssh-add - <<< "${{ secrets.GH_DEPLOY_KEY }}
+        ssh-add - <<< "${{ secrets.GH_DEPLOY_KEY }}"
         ssh-add -l
 
     - name: Copy Artifact to EC2
