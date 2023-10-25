@@ -29,7 +29,7 @@ jobs:
         cache: maven
     - name: Setting up working directory
       working-directory: demo
-
+      run: pwd
     - name: Print Working Directory
       run: pwd
     - name: List directory contents
