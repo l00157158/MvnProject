@@ -29,6 +29,8 @@ jobs:
         cache: maven
     - name: Clean before build Maven
       run: mvn clean install
+    - name: Change directory to demo
+      run: cd demo
     - name: Print Working Directory
       run: pwd
     - name: List directory contents
