@@ -58,22 +58,15 @@ jobs:
     needs: sample_test
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH Client
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{  secrets.MVN_PRJ_KEY_PVT  }}
-          known_hosts: ${{ secrets.SSH_HOSTS }}
-          config: ${{ secrets.CONFIG }} # ssh_config; optional
-          if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-      - name: rsync over SSH
-        run: rsync -r ./foo/ user@remote:bar/
-      
-      - name: Copy Artifact to EC2
-        run: |
-          scp -o StrictHostKeyChecking=no demo/target/demo-1.0-SNAPSHOT.jar ubuntu@54.89.10.92:/home/ubuntu/mvnprj/
-      - name: Restart Application on EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash -s' < ./home/ubuntu/restart.sh
+    - name: Copy Artifact to EC2
+      run: |
+        echo "${{secrets.MVN_PRJ_KEY_PVT}}" > deploy_key.pem
+        chmod 600 deploy_key.pem
+        scp -o StrictHostKeyChecking=no -i deploy_key.pem demo/target/demo-1.0-SNAPSHOT.jar ubuntu@54.89.10.92:/home/ubuntu/mvnprj/
+        
+    - name: Restart Application on EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash -s' < ./home/ubuntu/restart.sh
 
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
