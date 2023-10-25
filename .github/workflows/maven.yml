@@ -53,13 +53,18 @@ jobs:
     - name: Sample Test Step
       run: echo 'test success'
 
-# New job for sample deploy
-  sample_deploy:
+# New job for actual deployment
+  deploy:
     needs: sample_test
     runs-on: ubuntu-latest
     steps:
-    - name: Sample deploy
-      run: echo 'Deploy test success'
+    - name: Copy Artifact to EC2
+      run: |
+        scp -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} demo/target/your-artifact-name.jar ubuntu@your-ec2-ip-address:/path/on/ec2/where/you/want/to/copy/
+    - name: Restart Application on EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} ubuntu@your-ec2-ip-address 'bash -s' < ./path-to-your-restart-script-on-ec2.sh
+
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #  - name: Update dependency graph
