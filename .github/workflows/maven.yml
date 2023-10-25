@@ -67,10 +67,10 @@ jobs:
 
     - name: Copy Artifact to EC2
       run: |
-        scp -o StrictHostKeyChecking=no demo/target/demo-1.0-SNAPSHOT.jar ubuntu@23.20.152.86:/home/ubuntu/mvnprj/
+        scp -o StrictHostKeyChecking=no demo/target/demo-1.0-SNAPSHOT.jar ubuntu@54.89.10.92:/home/ubuntu/mvnprj/
     - name: Restart Application on EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@23.20.152.86 'bash -s' < ./home/ubuntu/restart.sh
+        ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash -s' < ./home/ubuntu/restart.sh
 
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
