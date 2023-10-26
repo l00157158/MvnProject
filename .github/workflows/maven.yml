@@ -67,7 +67,7 @@ jobs:
       
     - name: Restart Application on EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash -s' < ./home/ubuntu/restart.sh
+        ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash -s' < /home/ubuntu/restart.sh
 
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
