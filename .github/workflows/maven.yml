@@ -67,7 +67,10 @@ jobs:
       
     - name: Restart Application on EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash /home/ubuntu/restart.sh'
+         echo "${{secrets.MVN_PRJ_KEY_PVT}}" > deploy_key.pem
+         chmod 600 deploy_key.pem
+         ssh -o StrictHostKeyChecking=no -i deploy_key.pem ubuntu@54.89.10.92 'bash /home/ubuntu/restart.sh'
+   # ssh -o StrictHostKeyChecking=no ubuntu@54.89.10.92 'bash /home/ubuntu/restart.sh'
 
 
 
