@@ -43,6 +43,12 @@ jobs:
       
     - name: Confirm JAR is built
       run: ls -l demo/target/
+    
+    - name: Upload JAR for deploy job
+      uses: actions/upload-artifact@v2
+      with:
+        name: demo-jar
+        path: demo/target/demo-1.0-SNAPSHOT.jar
 
   # New job for sample test
   sample_test:
@@ -52,12 +58,6 @@ jobs:
     - name: Sample Test Step
       run: echo 'test success'
       
-    - name: Upload JAR for deploy job
-      uses: actions/upload-artifact@v2
-      with:
-        name: demo-jar
-        path: demo/target/demo-1.0-SNAPSHOT.jar
-
   deploy:
     needs: sample_test
     runs-on: ubuntu-latest
